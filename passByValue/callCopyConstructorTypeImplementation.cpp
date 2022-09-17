@@ -7,6 +7,10 @@ public:
 	{
 		std::cout << "person" << std::endl;
 	};
+	Person(const Person &rhs)
+	{
+		std::cout << "person copy constructor" << std::endl;
+	};
 	virtual ~Person()
 	{
 		std::cout << "destructure person" << std::endl;
@@ -24,6 +28,10 @@ public:
 	{
 		std::cout << "student" << std::endl;
 	};
+	Student(const Student &rhs)
+	{
+		std::cout << "student copy constructor" << std::endl;
+	};
 	virtual ~Student()
 	{
 		std::cout << "destructure student" << std::endl;
@@ -34,7 +42,7 @@ public:
 	}
 };
 
-void test(const Person &p) // Using base class type here
+void test(Person p) // NOTE: Using base class type here & passing by value
 {
 	std::cout << "validate student" << std::endl;
 	p.DoSomething(); // Output: Student Doing Something
@@ -46,17 +54,15 @@ int main()
 
 	test(student); // Passing derived class object
 
-	// Student *student = new Student();
-	// Person *p = student;
-	// p->DoSomething();
+	// Student student;
+	// Person p = student;
+	// p.DoSomething();
 }
 
-// ========= Output =========
+// Output
 // person
 // student
-// person copy constructor
 // validate student
-// Person Doing Something
-// destructure person
+// Student Doing Something
 // destructure student
 // destructure person

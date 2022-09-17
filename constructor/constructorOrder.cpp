@@ -77,3 +77,18 @@ int main()
 
 	bool result = validateStudent(plato);
 }
+
+// ========= Cost - Excluding the Student plato constructor/destructor =========
+// Base Empty constructor
+// (Base) string - name empty constructor
+// (Base)string - address empty constructor
+// (Derived) Copy constructor
+// (Derived) string - schoolName empty constructor
+// (Derived) string - schoolAddress empty constructor
+
+// (Derived) Destructor
+// (Derived) string - schoolName destructor
+// (Derived) string - schoolAddress destructor
+// (Base) Destructor
+// (Base) string - name destructor
+// (Base) string - address destructor
