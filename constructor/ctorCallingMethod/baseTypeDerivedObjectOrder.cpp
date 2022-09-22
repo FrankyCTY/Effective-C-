@@ -52,8 +52,11 @@ int main()
 	return 0;
 };
 
+// ========= Called by Parent's constructor =========
 // Parent CTOR
 // Parent Test
+// ========= Called by Child's constructor =========
 // Child CTOR
 // Child Test
+// ========= Object method call =========
 // Parent Said Hi

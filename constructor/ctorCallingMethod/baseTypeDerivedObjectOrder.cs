@@ -51,8 +51,11 @@ namespace testCsharp
 	}
 }
 
+// ========= Called by Parent's constructor =========
 // Parent CTOR
 // Child Test
+// ========= Called by Child's constructor =========
 // Child CTOR
 // Child Test
+// ========= Object method call =========
 // Child Said Hi
