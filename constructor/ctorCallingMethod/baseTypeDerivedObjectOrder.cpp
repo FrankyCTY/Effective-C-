@@ -8,18 +8,23 @@ class Parent
 public:
 	Parent()
 	{
+		cout << "========= Called by parent constructor =========" << endl;
 		cout << "Parent CTOR" << endl;
-		Test();
+		NormalOperation();
+		VirtualOperation();
+		// OperationOverriddenByChild();
 	}
 
-	void SayHi()
+	void NormalOperation()
 	{
-		cout << "Parent Said Hi" << endl;
+		cout << "Parent calls normal operation" << endl;
 	}
 
-	virtual void Test()
+	virtual void OperationOverriddenByChild() = 0;
+
+	virtual void VirtualOperation()
 	{
-		cout << "Parent Test" << endl;
+		cout << "Parent calls virtual operation" << endl;
 	};
 };
 
@@ -28,35 +33,54 @@ class Child : public Parent
 public:
 	Child()
 	{
+		cout << "\n========= Called by child constructor =========" << endl;
 		cout << "Child CTOR" << endl;
-		Test();
+		NormalOperation();
+		VirtualOperation();
+		OperationOverriddenByChild();
 	}
 
-	void SayHi()
+	void NormalOperation()
 	{
-		cout << "Child Said Hi" << endl;
+		cout << "Child calls normal operation" << endl;
 	}
 
-	virtual void Test()
+	void OperationOverriddenByChild() override
 	{
-		cout << "Child Test" << endl;
-	}
+		cout << "Child calls overridden operation" << endl;
+	};
+
+	void VirtualOperation()
+	{
+		cout << "Child calls virtual operation" << endl;
+	};
 };
 
 int main()
 {
 	Parent *child = new Child();
-	child->SayHi();
+	cout << "\n========= Normal method calls =========" << endl;
+
+	child->NormalOperation();
+	child->VirtualOperation();
+	child->OperationOverriddenByChild();
 
 	delete child;
 	return 0;
 };
 
-// ========= Called by Parent's constructor =========
+// ========= Called by parent constructor =========
 // Parent CTOR
-// Parent Test
-// ========= Called by Child's constructor =========
+// Parent calls normal operation
+// Parent calls virtual operation
+
+// ========= Called by child constructor =========
 // Child CTOR
-// Child Test
-// ========= Object method call =========
-// Parent Said Hi
+// Child calls normal operation
+// Child calls virtual operation
+// Child calls overridden operation
+
+// ========= Normal method calls =========
+// Parent calls normal operation
+// Child calls virtual operation
+// Child calls overridden operation

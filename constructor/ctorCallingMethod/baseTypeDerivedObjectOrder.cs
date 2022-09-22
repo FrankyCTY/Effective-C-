@@ -1,21 +1,23 @@
-using System;
-
-class Parent
+abstract class Parent
 {
 	public Parent()
 	{
+		System.Console.WriteLine("========= Called by parent constructor =========");
 		Console.WriteLine("Parent CTOR");
-		Test();
+		NormalOperation();
+		VirtualOperation();
+		OperationOverriddenByChild();
 	}
 
-	virtual public void SayHi()
+	public void NormalOperation()
 	{
-		Console.WriteLine("Parent Said Hi");
+		Console.WriteLine("Parent calls normal operation");
 	}
 
-	virtual public void Test()
+	abstract public void OperationOverriddenByChild();
+	virtual public void VirtualOperation()
 	{
-		Console.WriteLine("Parent Test");
+		System.Console.WriteLine("Parent calls virtual operation");
 	}
 }
 
@@ -23,22 +25,30 @@ class Child : Parent
 {
 	public Child()
 	{
+		System.Console.WriteLine("\n========= Called by child constructor =========");
 		Console.WriteLine("Child CTOR");
-		Test();
+		NormalOperation();
+		VirtualOperation();
+		OperationOverriddenByChild();
 	}
 
-	override public void SayHi()
+	public new void NormalOperation()
 	{
-		Console.WriteLine("Child Said Hi");
+		Console.WriteLine("Child calls normal operation");
 	}
 
-	override public void Test()
+	override public void OperationOverriddenByChild()
 	{
-		Console.WriteLine("Child Test");
+		Console.WriteLine("Child calls overridden operation");
+	}
+
+	override public void VirtualOperation()
+	{
+		System.Console.WriteLine("Child calls virtual operation");
 	}
 }
 
-namespace testCsharp
+namespace baseTypeDerivedObjectOrder
 {
 
 	class Program
@@ -46,16 +56,28 @@ namespace testCsharp
 		static void Main(string[] args)
 		{
 			Parent child = new Child();
-			child.SayHi();
+			System.Console.WriteLine("\n========= Normal method calls =========");
+			child.NormalOperation();
+			child.VirtualOperation();
+			child.OperationOverriddenByChild();
 		}
 	}
 }
 
-// ========= Called by Parent's constructor =========
+// ========= Called by parent constructor =========
 // Parent CTOR
-// Child Test
-// ========= Called by Child's constructor =========
+// Parent calls normal operation
+// Child calls virtual operation
+// Child calls overridden operation
+
+// ========= Called by child constructor =========
 // Child CTOR
-// Child Test
-// ========= Object method call =========
-// Child Said Hi
+// Child calls normal operation
+// Child calls virtual operation
+// Child calls overridden operation
+
+// ========= Normal method calls =========
+// Parent calls normal operation
+// Child calls virtual operation
+// Child calls overridden operation
+
