@@ -95,7 +95,7 @@ int main()
 	String str1 = String("hello");
 	String str2 = String("a");
 
-	str2 = str1;
+	str2 = move(str1);
 
 	str1.Print();
 	str2.Print();
@@ -106,5 +106,6 @@ int main()
 // String CTOR
 // String CTOR
 // String Copy Operator
-// hello
+// MOVED
+//
 // hello
