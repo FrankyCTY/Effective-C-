@@ -41,6 +41,14 @@ public:
 	{
 		printf("String Copy Operator\n");
 
+		if (this == &other)
+		{
+			printf("Early return from String Copy Operator\n");
+			return *this;
+		}
+
+		delete[] m_Data;
+
 		m_Size = other.m_Size;
 		m_Data = new char[m_Size];
 		memcpy(m_Data, other.m_Data, m_Size);
@@ -55,7 +63,10 @@ public:
 		// Don't delete data in memory and move data if this and other have the same memory address
 		// Otherwise it will cause unexpected data removal in the adderss
 		if (this == &other)
+		{
+			printf("Early return from String Move Operator\n");
 			return *this;
+		}
 
 		printf("MOVED\n");
 
