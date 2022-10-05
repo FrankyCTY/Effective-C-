@@ -35,7 +35,7 @@ public:
 	}
 
 	// Get current element
-	string Current()
+	string Current() const
 	{
 		return _wordsAggregate->GetItem(GetElementPosition());
 	}
@@ -45,7 +45,7 @@ public:
 		_position++;
 	}
 
-	bool isTraversalDone()
+	bool IsTraversalDone()
 	{
 		int totalWords = _wordsAggregate->GetSize();
 		return _position > totalWords - 1;
@@ -61,9 +61,9 @@ class WordsAggregate : public Aggregate
 public:
 	WordsAggregate() : _size(0){};
 
-	void Add(string newWork)
+	void Add(string newWord)
 	{
-		_words.push_back(newWork);
+		_words.push_back(newWord);
 		_size++;
 	};
 
@@ -96,14 +96,14 @@ int main()
 	Iterator *it = aggregate->CreateIterator();
 	cout << "Current position " << it->GetElementPosition() << endl;
 	cout << "Current element " << it->Current() << endl;
-	cout << "Is Traversal Finished: " << it->isTraversalDone() << "\n"
+	cout << "Is Traversal Finished: " << it->IsTraversalDone() << "\n"
 			 << endl;
 
 	cout << "=========== Traversal Start ===========\n"
 			 << endl;
 
 	it->SetElementPosition(100);
-	for (it->GetElementPosition(); !it->isTraversalDone(); it->Next())
+	for (it->GetElementPosition(); !it->IsTraversalDone(); it->Next())
 	{
 		cout << it->GetElementPosition() << " " << it->Current() << endl;
 	}
