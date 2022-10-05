@@ -1,4 +1,3 @@
-// comparing apples with apples
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,7 +15,7 @@ bool isNumber(const string &str)
 	return *pEnd == 0;
 }
 
-vector<string> split(const string str)
+vector<string> split(const string &str)
 {
 	stringstream ss(str);
 	vector<string> result;
@@ -30,7 +29,7 @@ vector<string> split(const string str)
 	return result;
 }
 
-void validateOperands(const vector<string> splittedStr)
+void validateOperands(const vector<string> &splittedStr)
 {
 	if (splittedStr[0].empty() || !isNumber(splittedStr[0]))
 	{
@@ -45,7 +44,7 @@ void validateOperands(const vector<string> splittedStr)
 	}
 }
 
-void validateOperator(const vector<string> splittedStr)
+void validateOperator(const vector<string> &splittedStr)
 {
 	size_t found = splittedStr[1].find_first_not_of("+-*/");
 	if (found != string::npos)
@@ -55,7 +54,7 @@ void validateOperator(const vector<string> splittedStr)
 	}
 }
 
-void calculator(const vector<string> splittedStr)
+void calculator(const vector<string> &splittedStr)
 {
 	size_t result;
 
