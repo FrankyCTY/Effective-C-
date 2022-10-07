@@ -34,6 +34,7 @@ public:
 	{
 		vector<Book> filteredBooks;
 
+		// FIlter by author
 		copy_if(m_books->begin(), m_books->end(), back_inserter(filteredBooks), [&author](Book b)
 						{ return b.author.compare(author) == 0; });
 
