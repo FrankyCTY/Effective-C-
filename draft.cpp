@@ -16,6 +16,11 @@ public:
 		return m_data;
 	}
 
+	Node *getNext() const
+	{
+		return m_next;
+	}
+
 	void setNext(Node *next)
 	{
 		m_next = next;
@@ -51,7 +56,8 @@ public:
 		Node *ptr = startNode;
 		while (ptr != nullptr)
 		{
-			cout << startNode->getData() << endl;
+			cout << ptr->getData() << endl;
+			ptr = ptr->getNext();
 		}
 	}
 
