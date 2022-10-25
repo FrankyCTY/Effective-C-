@@ -37,6 +37,25 @@ public:
 		other.m_Data = nullptr;
 	}
 
+	String &operator=(const String &other) noexcept
+	{
+		printf("String Copy Operator\n");
+
+		if (this == &other)
+		{
+			printf("Early return form String Copy Operator\n");
+			return *this;
+		}
+
+		delete[] m_Data;
+
+		m_Size = other.m_Size;
+		m_Data = new char[m_Size];
+		memcpy(m_Data, other.m_Data, m_Size);
+
+		return *this;
+	}
+
 	~String()
 	{
 		delete m_Data;
@@ -72,6 +91,28 @@ public:
 		printf("Entity CTOR that takes String as rvalue reference\n");
 	}
 
+	Entity(const Entity &other)
+	{
+		printf("Entity Copy CTOR\n");
+		// Deep copy - Clone data from memory address to another memory address
+		m_Name = String("asd");
+	}
+
+	Entity &operator=(const Entity &other) noexcept
+	{
+		printf("Entity Copy Operator\n");
+
+		if (this == &other)
+		{
+			printf("Early return form Entity Copy Operator\n");
+			return *this;
+		}
+
+		m_Name = other.m_Name;
+
+		return *this;
+	}
+
 	void PrintName()
 	{
 		m_Name.Print();
@@ -90,11 +131,16 @@ int main()
 {
 	// str is lvalue
 	String name = String("Cherno");
-	Entity entity(name);
-	entity.PrintName();
+	Entity *entity;
+	Entity e1(name);
+	Entity e2(name);
+	e1 = e2;
 };
 
 // String CTOR
 // String Copy CTOR
 // Entity CTOR
-// Cherno
+// String Copy CTOR
+// Entity CTOR
+// Entity Copy Operator
+// String Copy Operator
